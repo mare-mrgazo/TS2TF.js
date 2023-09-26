@@ -3,7 +3,7 @@ class _2p_h {
 
     grad = {
         'ISE': function (params, $x, $y, L) {
-            var dEdK = 0, dEdωn = 0, dEdζ = 0, dEdT = 0, n = $x.length
+            var dEdK = 0, dEdωn = 0, dEdζ = 0, n = $x.length
             var { K, ωn, ζ } = params
 
             for (var i = 0; i < n; i++) {
@@ -19,7 +19,7 @@ class _2p_h {
                 dEdζ += (2 * K * Math.exp(-2 * ωn * x * ζ) * (K * Math.sin(Math.acos(ζ) + ωn * x * Math.sqrt(1 - Math.pow(ζ
                     , 2))) + (y - K) * Math.sqrt(1 - Math.pow(ζ, 2)) * Math.exp(ωn * x * ζ)) * ((ωn * x * Math.pow(ζ,
                         2) + ζ - ωn * x) * Math.sin(Math.acos(ζ) + ωn * x * Math.sqrt(1 - Math.pow(ζ, 2))) + (-ωn * x *
-                            ζ - 1) * Math.sqrt(1 - Math.pow(ζ, 2)) * Math.cos(Math.acos(ζ) + ωn * x * Math.sqrt(1 - Math.pow(ζ, 2))))) / (n * (Math.pow(ζ, 2) - 1) ** 2)
+                            ζ - 1) * Math.sqrt(1 - Math.pow(ζ, 2)) * Math.cos(Math.acos(ζ) + ωn * x * Math.sqrt(1 - Math.pow(ζ, 2))))) / (n * Math.pow((Math.pow(ζ, 2) - 1), 2))
 
 
             }
@@ -68,16 +68,16 @@ class _3p_h {
                     * ωn + Math.PI / 4))) / (Math.pow(ωn, 2) - 2 * T * ζ * ωn + Math.pow(T, 2)) - ((Math.sqrt(1 - Math.pow(ζ, 2)) + ζ) * (Math.exp(-T * x) - Math.sqrt(2) * Math.exp(-x * ζ * ωn) * Math.sin(x * Math.sqrt(1 - Math.pow(ζ, 2)) * ωn + Math.PI / 4))) / (Math.pow(ωn, 2) - 2 * T * ζ * ωn + Math.pow(T,
                         2)) + ((2 * ωn - 2 * T * ζ) * ((Math.sqrt(1 - Math.pow(ζ, 2)) + ζ) * ωn - T) * (Math.exp(-T * x) -
                             Math.sqrt(2) * Math.exp(-x * ζ * ωn) * Math.sin(x * Math.sqrt(1 - Math.pow(ζ, 2)) * ωn + Math.PI /
-                                4))) / (Math.pow(ωn, 2) - 2 * T * ζ * ωn + Math.pow(T, 2)) ** 2) * (y - K * ((1 - Math.exp(-T * x)) / T - (((Math.sqrt(1 - Math.pow(ζ, 2)) + ζ) * ωn - T) * (Math.exp(-T * x) - Math.sqrt(2) * Math.exp(-x * ζ * ωn) * Math.sin(x * Math.sqrt(1 - Math.pow(ζ, 2)) * ωn + Math.PI / 4))) / (Math.pow(ωn, 2) - 2 * T * ζ * ωn + Math.pow(T, 2))))) / n
+                                4))) / (Math.pow(ωn, 2) - 2 * T * ζ * ωn + Math.pow(Math.pow(T, 2)), 2)) * (y - K * ((1 - Math.exp(-T * x)) / T - (((Math.sqrt(1 - Math.pow(ζ, 2)) + ζ) * ωn - T) * (Math.exp(-T * x) - Math.sqrt(2) * Math.exp(-x * ζ * ωn) * Math.sin(x * Math.sqrt(1 - Math.pow(ζ, 2)) * ωn + Math.PI / 4))) / (Math.pow(ωn, 2) - 2 * T * ζ * ωn + Math.pow(T, 2))))) / n
 
                 dEdζ += -(2 * K * (-((ωn * (Math.sqrt(1 - Math.pow(ζ, 2)) + ζ) - T) * (Math.sqrt(2) * ωn * x * Math.exp(-ωn * x * ζ) * Math.sin(ωn * x * Math.sqrt(1 - Math.pow(ζ, 2)) + Math.PI / 4) + (Math.sqrt(2) * ωn
                     * x * ζ * Math.exp(-ωn * x * ζ) * Math.cos(ωn * x * Math.sqrt(1 - Math.pow(ζ, 2)) + Math.PI / 4)) / Math.sqrt(1 - Math.pow(ζ, 2)))) / (-2 * T * ωn * ζ + Math.pow(ωn, 2) + Math.pow(T, 2)) - (2 * T * ωn * (ωn * (Math.sqrt(1 - Math.pow(ζ, 2)) + ζ) - T) * (Math.exp(-T * x) - Math.sqrt(2) * Math.exp(-ωn * x * ζ) * Math.sin(ωn * x * Math.sqrt(1 - Math.pow(ζ, 2)) + Math.PI / 4))) / (-2 * T * ωn
-                        * ζ + Math.pow(ωn, 2) + Math.pow(T, 2)) ** 2 - (ωn * (1 - ζ / Math.sqrt(1 - Math.pow(ζ, 2))) * (Math.exp(-T * x) - Math.sqrt(2) * Math.exp(-ωn * x * ζ) * Math.sin(ωn * x * Math.sqrt(1 - Math.pow(ζ
+                        * ζ + Math.pow(ωn, 2) + Math.pow(Math.pow(T, 2)), 2) - (ωn * (1 - ζ / Math.sqrt(1 - Math.pow(ζ, 2))) * (Math.exp(-T * x) - Math.sqrt(2) * Math.exp(-ωn * x * ζ) * Math.sin(ωn * x * Math.sqrt(1 - Math.pow(ζ
                             , 2)) + Math.PI / 4))) / (-2 * T * ωn * ζ + Math.pow(ωn, 2) + Math.pow(T, 2))) * (y - K * ((1 - Math.exp(-T * x)) / T - ((ωn * (Math.sqrt(1 - Math.pow(ζ, 2)) + ζ) - T) * (Math.exp(-T * x) - Math.sqrt(2) * Math.exp(-ωn * x * ζ) * Math.sin(ωn * x * Math.sqrt(1 - Math.pow(ζ, 2)) + Math.PI / 4))) /
                                 (-2 * T * ωn * ζ + Math.pow(ωn, 2) + Math.pow(T, 2))))) / n
 
                 dEdT += -(2 * K * ((Math.exp(-x * T) - Math.sqrt(2) * Math.exp(-ωn * x * ζ) * Math.sin(ωn * x * Math.sqrt(1 -
-                    Math.pow(ζ, 2)) + Math.PI / 4)) / (Math.pow(T, 2) - 2 * ωn * ζ * T + Math.pow(ωn, 2)) + ((ωn * (Math.sqrt(1 - Math.pow(ζ, 2)) + ζ) - T) * (2 * T - 2 * ωn * ζ) * (Math.exp(-x * T) - Math.sqrt(2) * Math.exp(-ωn * x * ζ) * Math.sin(ωn * x * Math.sqrt(1 - Math.pow(ζ, 2)) + Math.PI / 4))) / (Math.pow(T, 2) - 2 * ωn * ζ * T + Math.pow(ωn, 2)) ** 2 + (x * (ωn * (Math.sqrt(1 - Math.pow(ζ, 2)) + ζ) - T) * Math.exp(-x * T)) / (Math.pow(T, 2) - 2 * ωn * ζ * T + Math.pow(ωn, 2)) + (x * Math.exp(-x * T)) / T - (1 - Math.exp(-x * T)) / Math.pow(T, 2)) * (y - K * ((1 - Math.exp(-x * T)) / T - ((ωn * (Math.sqrt(1 - Math.pow(ζ, 2)) + ζ) - T) * (Math.exp(-x * T) - Math.sqrt(2) * Math.exp(-ωn * x * ζ) * Math.sin(ωn * x * Math.sqrt(1 - Math.pow(ζ, 2)) + Math.PI / 4))) / (Math.pow(T, 2) - 2 * ωn
+                    Math.pow(ζ, 2)) + Math.PI / 4)) / (Math.pow(T, 2) - 2 * ωn * ζ * T + Math.pow(ωn, 2)) + ((ωn * (Math.sqrt(1 - Math.pow(ζ, 2)) + ζ) - T) * (2 * T - 2 * ωn * ζ) * (Math.exp(-x * T) - Math.sqrt(2) * Math.exp(-ωn * x * ζ) * Math.sin(ωn * x * Math.sqrt(1 - Math.pow(ζ, 2)) + Math.PI / 4))) / (Math.pow(T, 2) - 2 * ωn * ζ * T + Math.pow(Math.pow(ωn, 2)), 2) + (x * (ωn * (Math.sqrt(1 - Math.pow(ζ, 2)) + ζ) - T) * Math.exp(-x * T)) / (Math.pow(T, 2) - 2 * ωn * ζ * T + Math.pow(ωn, 2)) + (x * Math.exp(-x * T)) / T - (1 - Math.exp(-x * T)) / Math.pow(T, 2)) * (y - K * ((1 - Math.exp(-x * T)) / T - ((ωn * (Math.sqrt(1 - Math.pow(ζ, 2)) + ζ) - T) * (Math.exp(-x * T) - Math.sqrt(2) * Math.exp(-ωn * x * ζ) * Math.sin(ωn * x * Math.sqrt(1 - Math.pow(ζ, 2)) + Math.PI / 4))) / (Math.pow(T, 2) - 2 * ωn
                         * ζ * T + Math.pow(ωn, 2))))) / n
 
             }
@@ -125,7 +125,7 @@ const errf = {
     }
 }
 
-function reckon({ x, y, est, e, iters, L, params, log, MBIP = 10, MSI = 300 }) {
+function reckon({ x, y, est, iters, L, params, log, MBIP = 10, MSI = 300, e = 'ISE' }) {
     switch (est) {
         case "3p":
             var model = new _3p_h()
@@ -181,7 +181,7 @@ function reckon({ x, y, est, e, iters, L, params, log, MBIP = 10, MSI = 300 }) {
     }
 }
 
-function grid({ x, y, est, e, L, params, log }) {
+function grid({ x, y, est, L, params, log, e = 'ISE' }) {
     switch (est) {
         case "3p":
             var model = new _3p_h()
